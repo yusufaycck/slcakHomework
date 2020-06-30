@@ -42,7 +42,7 @@ public class slackHomework extends TestBase {
 
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void caseApi() throws URISyntaxException, IOException, InterruptedException {
         HttpClient httpClient= HttpClientBuilder.create().build();
         URIBuilder uriBuilder=new URIBuilder();
@@ -53,7 +53,7 @@ public class slackHomework extends TestBase {
 
         HttpGet httpGet=new HttpGet(uriBuilder.build());
         httpGet.setHeader("Accept","application/json");
-        httpGet.setHeader("Authorization","Bearer xoxb-941125893829-1209222336674-V71HpFW2Xr33KoX1tBuZecRV");
+        httpGet.setHeader("Authorization","Bearer xoxb-941125893829-1209222336674-a9qBQeDSYC16a0SI1NLgs6lI");
 
         HttpResponse httpResponse=httpClient.execute(httpGet);
         Assert.assertEquals(HttpStatus.SC_OK,httpResponse.getStatusLine().getStatusCode(),"There is status code");
@@ -75,7 +75,7 @@ public class slackHomework extends TestBase {
 
         Thread.sleep(500);
         loginPage.email.sendKeys("yusufaycck@gmail.com");
-        loginPage.password.sendKeys("Ankara1974.");
+
         loginPage.signButton.click();
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -85,7 +85,7 @@ public class slackHomework extends TestBase {
         Assert.assertEquals(list.get(0).get("text"),homePage.message.getText());
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void caseApi2() throws URISyntaxException, IOException {
 
         HttpClient httpClient=HttpClientBuilder.create().build();
@@ -95,7 +95,7 @@ public class slackHomework extends TestBase {
 
         HttpPost httpPost=new HttpPost(uriBuilder.build());
         httpPost.setHeader("Content-Type","application/json");
-        httpPost.setHeader("Authorization","Bearer xoxb-941125893829-1209222336674-V71HpFW2Xr33KoX1tBuZecRV");
+        httpPost.setHeader("Authorization","Bearer xoxb-941125893829-1209222336674-a9qBQeDSYC16a0SI1NLgs6lI");
 
         HttpEntity httpEntity=new StringEntity(payLoadUtils.PostMethod("Text from nobody....."));
         httpPost.setEntity(httpEntity);
@@ -161,7 +161,7 @@ public class slackHomework extends TestBase {
 
         Thread.sleep(500);
         loginPage.email.sendKeys("yusufaycck@gmail.com");
-        loginPage.password.sendKeys("Ankara1974..");
+
         loginPage.signButton.click();
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -177,7 +177,7 @@ public class slackHomework extends TestBase {
 
         Thread.sleep(500);
         loginPage.email.sendKeys("yusufaycck@gmail.com");
-        loginPage.password.sendKeys("Ankara1974.");
+
         loginPage.signButton.click();
 
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -191,7 +191,7 @@ public class slackHomework extends TestBase {
         Assert.assertEquals(message,homePage.message.getText());
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void case5() throws URISyntaxException, IOException {
         HttpClient httpClient=HttpClientBuilder.create().build();
         URIBuilder uriBuilder=new URIBuilder();
@@ -245,16 +245,9 @@ public class slackHomework extends TestBase {
         httpResponse=httpClient.execute(httpDelete);
         Assert.assertEquals(HttpStatus.SC_OK,httpResponse.getStatusLine().getStatusCode());
 
-        parsed=objectMapper.readValue(httpResponse.getEntity().getContent(), new TypeReference<Map<String, Object>>() {
-        });
+        parsed=objectMapper.readValue(httpResponse.getEntity().getContent(), new TypeReference<Map<String, Object>>() {});
         String tsActual= (String) parsed.get("ts");
         Assert.assertEquals(tsExpected,tsActual);
-
-
-
-
-
-
 
 
     }
